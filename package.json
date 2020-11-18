@@ -1,0 +1,16 @@
+{
+  "name": "hercules-bot",
+  "version": "1.0.0",
+  "description": "dnd bot for discord servers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon script.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.4.1",
+    "node-fetch": "^2.6.1"
+  }
+}
