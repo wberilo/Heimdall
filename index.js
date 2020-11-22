@@ -59,6 +59,13 @@ invalid imputs: \`5d\` \`5d6+4\``);
     message.channel.send(``)
   }
 
+  else if (command === 'writecharacter'){
+
+  }
+  else if (command === 'readcharacter'){
+    
+  }
+
   else if (command === 'yeet'){
 
   }
