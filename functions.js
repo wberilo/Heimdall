@@ -38,12 +38,22 @@ function parseNumbers(str) {
 }
 
 async function grabMeem(message) {
-  const response = await fetch('https://www.reddit.com/r/dndmemes/.json?limit=20');
-  const data = await response.json();
-  const posts = data.data.children.filter(child => child.data.is_reddit_media_domain);
-  const post = posts[Math.floor(Math.random() * posts.length)];
-  const attachment = new Discord.MessageAttachment(post.data.url_overridden_by_dest);
-  message.channel.send(attachment);
+  try {
+    const response = await fetch(
+      'https://www.reddit.com/r/dndmemes/.json?limit=20'
+    );
+    const data = await response.json();
+    const posts = data.data.children.filter(
+      (child) => child.data.is_reddit_media_domain
+    );
+    const post = posts[Math.floor(Math.random() * posts.length)];
+    const attachment = new Discord.MessageAttachment(
+      post.data.url_overridden_by_dest
+    );
+    message.channel.send(attachment);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function grabItems() {
@@ -80,4 +90,11 @@ function addToFile(message) {
   });
 }
 
-module.exports = {addNewCharacter, rollDice,parseNumbers,grabMeem,grabItems,addToFile}
+module.exports = {
+  addNewCharacter,
+  rollDice,
+  parseNumbers,
+  grabMeem,
+  grabItems,
+  addToFile,
+};
