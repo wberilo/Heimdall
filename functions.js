@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
+const Discord = require('discord.js');
 
 function addNewCharacter(message, character) {
   fs.readFile('./user-submitted/characters.json', function (err, data) {
