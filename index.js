@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const config = require('./config.json');
+//const config = require('./config.json');
 const client = new Discord.Client();
 const prefix = '&';
 const lib = require('./functions')
@@ -76,5 +76,5 @@ invalid imputs: \`5d\` \`5d6+4\``);
   }
 });
 
-client.login(process.env.TOKEN);
-//client.login(config.BOT_TOKEN);
+//client.login(process.env.TOKEN);
+client.login(config.BOT_TOKEN);
