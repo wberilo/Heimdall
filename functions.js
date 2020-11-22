@@ -91,6 +91,9 @@ function addToFile(message) {
   });
 }
 
+function grabCharacter(message) {
+  
+}
 module.exports = {
   addNewCharacter,
   rollDice,
