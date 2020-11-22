@@ -72,9 +72,9 @@ invalid imputs: \`5d\` \`5d6+4\``);
   }
   
   else if (command === 'conditions'){
-    
+
   }
 });
 
-client.log(process.env.TOKEN);
+client.login(process.env.TOKEN);
 //client.login(config.BOT_TOKEN);
