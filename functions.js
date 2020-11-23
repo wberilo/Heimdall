@@ -45,12 +45,13 @@ async function grabMeem(message) {
     );
     const data = await response.json();
     const posts = data.data.children.filter(
-      (child) => child.data.is_reddit_media_domain
+      (child) => child.data.is_reddit_media_domain && child.data.preview.images[0] !== undefined
     );
     const post = posts[Math.floor(Math.random() * posts.length)];
     const attachment = new Discord.MessageAttachment(
       post.data.url_overridden_by_dest
     );
+    message.channel.send(post.data.title)
     message.channel.send(attachment);
   } catch (error) {
     console.log(error);
@@ -92,7 +93,7 @@ function addToFile(message) {
 }
 
 function grabCharacter(message) {
-  
+
 }
 module.exports = {
   addNewCharacter,
