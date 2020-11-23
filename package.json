@@ -1,5 +1,5 @@
 {
-  "name": "hercules-bot",
+  "name": "heimdall-bot",
   "version": "1.0.0",
   "description": "dnd bot for discord servers.",
   "main": "index.js",
