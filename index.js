@@ -23,7 +23,7 @@ client.on('message', function (message) {
 input should look like: \`5d6\` or \`5d6r2+4\` 
 where: \`<DICE NUMBER>\`**D**\`<DICE SIZE>\`**R**\`<MINIMUM NUMBER>\`**+**\`<ADDED>\` 
 valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
-invalid imputs: \`5d\` \`5d6+4\``);
+`);
     } 
     else{
       message.reply(lib.parseNumbers(filtered[0]))
