@@ -28,34 +28,65 @@ function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0) {
     die = die + 1 > min ? die : `~~${die}~~ ` + min;
     arrayDice.push(die);
   }
-  return `\`${numberOf}d${diceSize}r${min}+${plus}\` = ${arrayDice.join(
-    ' + '
-  )} ${plus > 0 ? `+ ${plus}` : ``} = ***${total + parseInt(plus)}***`;
+  return {
+    string: `\`${numberOf}d${diceSize}r${min}+${plus}\` = ${arrayDice.join(
+      ' + '
+    )} ${plus > 0 ? `+ ${plus}` : ``} = ***${total + parseInt(plus)}***`,
+    result: total,
+  };
 }
-
 
 function parseNumbers(str) {
-  let numberOf = str.match(/[0-9]+d/)
-  numberOf!==null ? numberOf = parseInt(numberOf[0]) : numberOf = 1
+  let numberOf = str.match(/[0-9]+d/);
+  numberOf !== null ? (numberOf = parseInt(numberOf[0])) : (numberOf = 1);
 
-  let diceSize = str.match(/d[0-9]+/)
-  diceSize!==null ? diceSize = parseInt(diceSize[0].substr(1)) : diceSize = 6
+  let diceSize = str.match(/d[0-9]+/);
+  diceSize !== null
+    ? (diceSize = parseInt(diceSize[0].substr(1)))
+    : (diceSize = 6);
 
-  let min = str.match(/r[0-9]+/)
-  min!==null ? min = parseInt(min[0].substr(1)) : min = 0
+  let min = str.match(/r[0-9]+/);
+  min !== null ? (min = parseInt(min[0].substr(1))) : (min = 0);
 
-  let plus = str.match(/\+[0-9]+/)
-  plus!==null ? plus = parseInt(plus[0].substr(1)) : plus = 0;
+  let plus = str.match(/\+[0-9]+/);
+  plus !== null ? (plus = parseInt(plus[0].substr(1))) : (plus = 0);
 
-  return rollDice(numberOf,diceSize,min,plus)
+  return rollDice(numberOf, diceSize, min, plus);
 }
+//tests
+// console.log(parseNumbers('1d6'));
+// console.log(parseNumbers('5d6+2'));
+// console.log(parseNumbers('5d4+2'));
+// console.log(parseNumbers('5d1r3'));
+// console.log(parseNumbers('r3+2'));
 
-console.log(parseNumbers('5d6r5+2'))
-console.log(parseNumbers('5d6+2'))
-console.log(parseNumbers('5d4+2'))
-console.log(parseNumbers('5d1r3'))
-console.log(parseNumbers('r3+2'))
-
+function generateCharacter() {
+  const compareSmallest = (smallestValue = 0, currentValue) =>
+    smallestValue > currentValue ? currentValue : smallestValue;
+  const array = [];
+  const results = []
+  const removedList = []
+  for (let i = 0; i < 6; i++) {
+    const diceRolls = [];
+    for (let j = 0; j < 4; j++) {
+      diceRolls.push(Math.floor(Math.random() * 6) + 1);
+    }
+    const removed = diceRolls.indexOf(diceRolls.reduce(compareSmallest));
+    removedList.push(removed)
+    results.push(diceRolls.reduce((accumulator , currentValue) => accumulator + currentValue) - diceRolls[removed])
+    array.push(diceRolls)
+  }
+  const smallestRoll = results.indexOf(results.reduce(compareSmallest));
+  const finalResult = []
+  results[smallestRoll] = '~~'+results[smallestRoll]+'~~'
+  for (let i = 0; i < array.length; i++) {
+    array[i][removedList[i]] = '~~'+array[i][removedList[i]]+'~~'
+    finalResult.push(array[i].join(' + ')+' = '+results[i])
+  }
+  finalResult.push('you got: ' +results.join(', '))
+  console.log(finalResult.join('\n'))
+}
+generateCharacter()
 async function grabMeem(message) {
   try {
     const source = ['https://www.reddit.com/r/dndmemes/.json?limit=40','https://www.reddit.com/r/dndmemes/new/.json?limit=40']
