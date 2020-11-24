@@ -59,6 +59,13 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
     message.reply(lib.generateCharacter())
   }
 
+  else if (command === 'myCharacters'){
+  }
+  else if (command === 'writecharacter'){
+  }
+  else if (command === 'readcharacter'){
+  }
+
   else if (command === 'yeet'){
 
   }
