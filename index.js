@@ -26,7 +26,7 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
 `);
     } 
     else{
-      message.reply(lib.parseNumbers(filtered[0]))
+      message.reply(lib.parseNumbers(filtered[0]).result)
     }
   } 
   
@@ -53,6 +53,10 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
 
   else if (command === 'help'){
     message.channel.send(``)
+  }
+
+  else if (command === 'rollcharacter'){
+    message.reply(lib.generateCharacter())
   }
 
   else if (command === 'yeet'){
