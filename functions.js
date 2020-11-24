@@ -33,10 +33,44 @@ function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0) {
   )} ${plus > 0 ? `+ ${plus}` : ``} = ***${total + parseInt(plus)}***`;
 }
 
+
 function parseNumbers(str) {
-  let numbers = str.match(/\d+/g);
-  return numbers;
+  let numberOf = str.match(/[0-9]+d/)
+  if(numberOf!==null){
+    numberOf = parseInt(numberOf[0])
+  }
+  else{
+    numberOf = 1
+  }
+  let diceSize = str.match(/d[0-9]+/)
+  if(diceSize!==null){
+    diceSize = parseInt(diceSize[0].substr(1))
+  }
+  else{
+    diceSize = 6
+  }
+  let min = str.match(/r[0-9]+/)
+  if(min!==null){
+    min = parseInt(min[0].substr(1))
+  }
+  else{
+    min = 0
+  }
+  let plus = str.match(/\+[0-9]+/)
+  if(plus!==null){
+    plus = parseInt(plus[0].substr(1))
+  }
+  else{
+    plus = 0;
+  }
+  return rollDice(numberOf,diceSize,min,plus)
 }
+
+console.log(parseNumbers('5d6r5+2'))
+console.log(parseNumbers('10d6+2'))
+console.log(parseNumbers('5d1+2'))
+console.log(parseNumbers('5d1r3'))
+console.log(parseNumbers('r3+2'))
 
 async function grabMeem(message) {
   try {

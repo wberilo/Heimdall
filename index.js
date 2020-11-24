@@ -18,19 +18,15 @@ client.on('message', function (message) {
 
   else if (command === 'dice') {
     const filtered = args.filter((arg) => /\d/.test(arg));
-    if (args[0].charAt(0) === 'd') {
-      const numbsFromArg = lib.parseNumbers(filtered[0]);
-      message.reply(rollDice(1, numbsFromArg[0]));
-    } else if (filtered.length === [] || filtered[0] === undefined) {
+    if (filtered === [] || filtered[0] === undefined) {
       message.reply(`Incorrect parameters
 input should look like: \`5d6\` or \`5d6r2+4\` 
 where: \`<DICE NUMBER>\`**D**\`<DICE SIZE>\`**R**\`<MINIMUM NUMBER>\`**+**\`<ADDED>\` 
 valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
 invalid imputs: \`5d\` \`5d6+4\``);
-    } else {
-      const numbsFromArg = lib.parseNumbers(filtered[0]);
-      const [diceNumber, diceSize, min, plus] = numbsFromArg;
-      message.reply(lib.rollDice(diceNumber, diceSize, min, plus));
+    } 
+    else{
+      message.reply(lib.parseNumbers(filtered[0]))
     }
   } 
   
