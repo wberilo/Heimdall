@@ -83,8 +83,8 @@ function generateCharacter() {
     array[i][removedList[i]] = '~~'+array[i][removedList[i]]+'~~'
     finalResult.push(array[i].join(' + ')+' = '+results[i])
   }
-  finalResult.push('you got: ' +results.join(', '))
-  return '**'+finalResult.join('\n')+'**'
+  finalResult.push('**you got: ' +results.join(', ')+'**')
+  return finalResult.join('\n')
 }
 async function grabMeem(message) {
   try {
