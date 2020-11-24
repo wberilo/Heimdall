@@ -40,17 +40,12 @@ function parseNumbers(str) {
 
 async function grabMeem(message) {
   try {
-    const response = await fetch(
-      'https://www.reddit.com/r/dndmemes/.json?limit=20'
-    );
+    const source = ['https://www.reddit.com/r/dndmemes/.json?limit=40','https://www.reddit.com/r/dndmemes/new/.json?limit=40']
+    const response = await fetch(source[Math.floor(Math.random() * source.length)]);
     const data = await response.json();
-    const posts = data.data.children.filter(
-      (child) => child.data.is_reddit_media_domain && child.data.preview.images[0] !== undefined
-    );
+    const posts = data.data.children.filter((child) => child.data.is_reddit_media_domain && child.data.preview.images[0] !== undefined);
     const post = posts[Math.floor(Math.random() * posts.length)];
-    const attachment = new Discord.MessageAttachment(
-      post.data.url_overridden_by_dest
-    );
+    const attachment = new Discord.MessageAttachment(post.data.url_overridden_by_dest);
     message.channel.send(post.data.title)
     message.channel.send(attachment);
   } catch (error) {
