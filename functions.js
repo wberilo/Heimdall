@@ -19,7 +19,7 @@ function addNewCharacter(message, character) {
   });
 }
 
-function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0) {
+function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0, keepHighest = 0) {
   let total = 0;
   let arrayDice = [];
   for (let index = 0; index < numberOf; index++) {
@@ -66,7 +66,7 @@ function generateCharacter() {
   const array = [];
   const results = []
   const removedList = []
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 7; i++) {
     const diceRolls = [];
     for (let j = 0; j < 4; j++) {
       diceRolls.push(Math.floor(Math.random() * 6) + 1);
@@ -86,6 +86,8 @@ function generateCharacter() {
   finalResult.push('**you got: ' +results.join(', ')+'**')
   return finalResult.join('\n')
 }
+console.log(generateCharacter())
+
 async function grabMeem(message) {
   try {
     const source = ['https://www.reddit.com/r/dndmemes/.json?limit=40','https://www.reddit.com/r/dndmemes/new/.json?limit=40']
