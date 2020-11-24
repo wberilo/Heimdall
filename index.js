@@ -56,7 +56,7 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
   }
 
   else if (command === 'rollcharacter'){
-    message.reply(lib.generateCharacter())
+    message.reply('\n'+lib.generateCharacter())
   }
 
   else if (command === 'myCharacters'){
