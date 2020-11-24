@@ -83,7 +83,7 @@ function generateCharacter() {
     array[i][removedList[i]] = '~~'+array[i][removedList[i]]+'~~'
     finalResult.push(array[i].join(' + ')+' = '+results[i])
   }
-  finalResult.push('**you got: ' +results.join(', ')+'** ')
+  finalResult.push('**you got: ' +results.join(', ')+' **')
   return finalResult.join('\n')
 }
 
