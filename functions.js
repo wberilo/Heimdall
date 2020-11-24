@@ -139,6 +139,7 @@ function grabCharacter(message) {
 
 }
 module.exports = {
+  generateCharacter,
   addNewCharacter,
   rollDice,
   parseNumbers,
