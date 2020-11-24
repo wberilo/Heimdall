@@ -78,7 +78,7 @@ function generateCharacter() {
   }
   const smallestRoll = results.indexOf(results.reduce(compareSmallest));
   const finalResult = []
-  results[smallestRoll] = '~~'+results[smallestRoll]+'~~'
+  results[smallestRoll] = '**~~'+results[smallestRoll]+'~~**'
   for (let i = 0; i < array.length; i++) {
     array[i][removedList[i]] = '~~'+array[i][removedList[i]]+'~~'
     finalResult.push(array[i].join(' + ')+' = '+results[i])
