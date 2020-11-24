@@ -84,9 +84,8 @@ function generateCharacter() {
     finalResult.push(array[i].join(' + ')+' = '+results[i])
   }
   finalResult.push('you got: ' +results.join(', '))
-  console.log(finalResult.join('\n'))
+  return finalResult.join('\n')
 }
-generateCharacter()
 async function grabMeem(message) {
   try {
     const source = ['https://www.reddit.com/r/dndmemes/.json?limit=40','https://www.reddit.com/r/dndmemes/new/.json?limit=40']
