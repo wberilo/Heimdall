@@ -24,8 +24,14 @@ function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0, keepHighest = 0
   let arrayDice = [];
   for (let index = 0; index < numberOf; index++) {
     let die = Math.floor(Math.random() * diceSize) + 1;
-    total += die;
     die = die + 1 > min ? die : `~~${die}~~ ` + min;
+    if(die+1>min){
+      total += die;
+    }
+    else{
+      die = `~~${die}~~ ` + min;
+      total += min;
+    }
     arrayDice.push(die);
   }
   return {
@@ -102,13 +108,6 @@ async function grabMeem(message) {
   }
 }
 
-async function grabItems() {
-  const res = await fetch('https://api.open5e.com/weapons/');
-  const data = await res.json();
-  console.log(data.results);
-  return data.results;
-}
-
 function addToFile(message) {
   const whattoWrite = message.content.substr(message.content.indexOf(' ') + 1);
   const author = message.author.id;
@@ -145,6 +144,5 @@ module.exports = {
   rollDice,
   parseNumbers,
   grabMeem,
-  grabItems,
   addToFile,
 };
