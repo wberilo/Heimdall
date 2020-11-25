@@ -24,7 +24,6 @@ function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0, keepHighest = 0
   let arrayDice = [];
   for (let index = 0; index < numberOf; index++) {
     let die = Math.floor(Math.random() * diceSize) + 1;
-    die = die + 1 > min ? die : `~~${die}~~ ` + min;
     if(die+1>min){
       total += die;
     }
