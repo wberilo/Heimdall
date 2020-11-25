@@ -16,7 +16,7 @@ client.on('message', function (message) {
     message.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
   }
 
-  else if (command === 'dice') {
+  else if (command === 'dice' || command === 'd') {
     const filtered = args.filter((arg) => /\d/.test(arg));
     if (filtered === [] || filtered[0] === undefined) {
       message.reply(`Incorrect parameters
