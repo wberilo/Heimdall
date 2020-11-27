@@ -43,10 +43,9 @@ function fetchItemsFromJson(message){
       }
       else{
         messageOut.push(`${i}: ${result[i]}`)
-        
       }
     }
-    message.channel.send(messageOut.join('\n'))
+    message.channel.send('```'+messageOut.join('\n')+'```')
     message.channel.send('Entries')
     others.forEach((element)=>message.channel.send(element))
   }
