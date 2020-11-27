@@ -35,7 +35,7 @@ function fetchItemsFromJson(message){
   
   else{
     for(i in result){
-      if(result[i].isArray()){
+      if(Array.isArray(result[i])){
         message.channel.send(i)
         result[i].forEach((element)=> message.channel.send(element))
       }
