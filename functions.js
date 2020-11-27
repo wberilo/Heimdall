@@ -39,8 +39,9 @@ function fetchItemsFromJson(message){
         message.channel.send(i)
         result[i].forEach((element)=> message.channel.send(element))
       }
-      console.log(`${i}: ${result[i]}`)
-      message.channel.send(`${i}: ${result[i]}`)
+      else{
+        message.channel.send(`${i}: ${result[i]}`)
+      }
     }
   }
   if(results.length > 1){
