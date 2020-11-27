@@ -34,18 +34,24 @@ function fetchItemsFromJson(message){
   }
   
   else{
+    message.channel.send(`found ${result.length} result(s), please give me a second to fetch all the info.`)
+    const messageOut = ''
+    const others = []
     for(i in result){
       if(i === 'entries'){
-        message.channel.send(i)
-        result[i].forEach((element)=> message.channel.send(element))
+        others = result[i]
       }
       else{
-        message.channel.send(`${i}: ${result[i]}`)
+        messageOut.push(`${i}: ${result[i]}`)
+        
       }
     }
+    message.channel.send(messageOut.join('\n'))
+    message.channel.send('Entries')
+    others.forEach((element)=>message.channel.send(element))
   }
   if(results.length > 1){
-    message.channel.send(`**I also found ${results.length - 1} other entries that look similar to what you're looking for.**`)
+    message.channel.send(`\`I also found ${results.length - 1} other entries that look similar to what you're looking for.\`*`)
   }
 }
 
