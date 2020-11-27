@@ -22,19 +22,30 @@ function addNewCharacter(message, character) {
 
 function fetchItemsFromJson(message){
   const toSearch = message.content.substring(message.content.indexOf(" ") + 1).toLowerCase()
+  if(toSearch === ' ' || toSearch === ''){
+    message.reply('invalid')
+    return null
+  }
   const results = Items.item.filter((item)=>item.name.toLowerCase().includes(toSearch))
   //console.log(results)
   const result = results[0]
   if(result === undefined){
     message.reply(`Couldn't find the item you are looking for.`)
   }
+  
   else{
     for(i in result){
+      if(result[i].isArray()){
+        message.channel.send(i)
+        result[i].forEach((element)=> message.channel.send(element))
+      }
       console.log(`${i}: ${result[i]}`)
       message.channel.send(`${i}: ${result[i]}`)
     }
   }
-  
+  if(results.length > 1){
+    message.channel.send(`We also found ${results.length - 1} other entries that look similar to what you're looking for.`)
+  }
 }
 
 function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0, keepHighest = 0) {
