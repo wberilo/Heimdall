@@ -35,7 +35,7 @@ function fetchItemsFromJson(message){
   
   else{
     message.channel.send(`found ${result.length} result(s), please give me a second to fetch all the info.`)
-    const messageOut = ''
+    const messageOut = []
     const others = []
     for(i in result){
       if(i === 'entries'){
