@@ -34,7 +34,7 @@ function fetchItemsFromJson(message){
   }
   
   else{
-    message.channel.send(`\`found ${results.length} result(s), please give me a second to fetch all the info.\``)
+    message.channel.send(`\`Match, please give me a second to fetch all the info.\``)
     const messageOut = []
     let others = []
     for(i in result){
@@ -51,7 +51,7 @@ function fetchItemsFromJson(message){
     others.forEach((element)=>message.channel.send(element))
   }
   if(results.length > 1){
-    message.channel.send(`\`I also found ${results.length - 1} other entries that look similar to what you're looking for.\``)
+    message.channel.send(`\`I also found ${results.length - 1} other entries that look similar to what you're looking for, you can try searching again with different terms.\``)
   }
 }
 
