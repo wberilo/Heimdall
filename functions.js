@@ -51,7 +51,7 @@ function fetchItemsFromJson(message){
     others.forEach((element)=>message.channel.send(element))
   }
   if(results.length > 1){
-    message.channel.send(`\`I also found ${results.length - 1} other entries that look similar to what you're looking for.\`*`)
+    message.channel.send(`\`I also found ${results.length - 1} other entries that look similar to what you're looking for.\``)
   }
 }
 
