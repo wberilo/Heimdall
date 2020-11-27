@@ -43,6 +43,10 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
 
   }
 
+  else if (command === 'items'){
+    
+  }
+
   else if (command === 'feats'){
 
   }

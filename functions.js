@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
 const Discord = require('discord.js');
+const Items = require('./source-database/other/items.json')
 
 function addNewCharacter(message, character) {
   fs.readFile('./user-submitted/characters.json', function (err, data) {
@@ -17,6 +18,23 @@ function addNewCharacter(message, character) {
       }
     );
   });
+}
+
+function fetchItemsFromJson(message){
+  const toSearch = message.content.substring(message.content.indexOf(" ") + 1).toLowerCase()
+  const results = Items.item.filter((item)=>item.name.toLowerCase().includes(toSearch))
+  //console.log(results)
+  const result = results[0]
+  if(result === undefined){
+    message.reply(`Couldn't find the item you are looking for.`)
+  }
+  else{
+    for(i in result){
+      console.log(`${i}: ${result[i]}`)
+      message.channel.send(`${i}: ${result[i]}`)
+    }
+  }
+  
 }
 
 function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0, keepHighest = 0) {
