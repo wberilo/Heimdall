@@ -48,11 +48,13 @@ function fetchItemsFromJson(message){
     message.channel.send('```'+messageOut.join('\n')+'```')
     message.channel.send('Entries')
     others.forEach((element)=>message.channel.send(element))
-  }
-  if(results.length > 1){
-    message.channel.send(`\`I also found ${results.length - 1} other entries that look similar to what you're looking for, you can try searching again with different terms.\``)
+    if(results.length > 1){
+      message.channel.send(`\`I also found ${results.length - 1} other entries that are similar to what you're looking for, you can try refining your search.\``)
+    }
   }
 }
+//useful regex for {@dice 10d6} = (?<=\{@)(.*?)(?=\})
+
 
 function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0, keepHighest = 0) {
   let total = 0;

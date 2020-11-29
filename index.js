@@ -74,8 +74,8 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
 
   }
   
-  else if (command === 'eat'){
-
+  else if (command === 'feedm'){
+    message.channel.send(':rage: Feed the DM :rage:')
   }
 
   else if (command === 'markov'){
