@@ -11,11 +11,11 @@ client.on('message', function (message) {
   const args = commandBody.split(' ');
   const command = args.shift().toLowerCase();
 
-  if(message.content.contains('what?') && message.content.contains('how')){
+  if(message.content.includes('what?') && message.content.includes('how')){
     message.react(':question:')
   }
-  if(message.content.contains('unless...')){
-    message.react(':flushed:')
+  if(message.content.includes('unless...')){
+    message.react(':flushed:f')
   }
 
   if (command === 'ping') {
