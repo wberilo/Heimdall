@@ -11,12 +11,15 @@ client.on('message', function (message) {
   const args = commandBody.split(' ');
   const command = args.shift().toLowerCase();
 
-  if(message.content.includes('what') && message.content.includes('how')){
+  if(message.content.toLowerCase().includes('what') && message.content.includes('how')){
     message.react('❓')
     message.react('❔')
   }
-  if(message.content.includes('unless...')){
+  if(message.content.toLowerCase().includes('unless...')){
     message.react('😳')
+  }
+  if(message.content.toLowerCase().includes(' pog')){
+    message.react('😲')
   }
 
   if (!message.content.startsWith(prefix)) return;
