@@ -18,7 +18,7 @@ client.on('message', function (message) {
   if(message.content.toLowerCase().includes('unless...')){
     message.react('😳')
   }
-  if(message.content.toLowerCase().includes(' pog')){
+  if(message.content.toLowerCase().includes('pog')){
     message.react('😲')
   }
 
