@@ -6,7 +6,7 @@ const lib = require('./functions')
 
 client.on('message', function (message) {
   if (message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return;
+  
   const commandBody = message.content.slice(prefix.length);
   const args = commandBody.split(' ');
   const command = args.shift().toLowerCase();
@@ -15,9 +15,11 @@ client.on('message', function (message) {
     message.react(':question:')
   }
   if(message.content.includes('unless...')){
-    message.react(':flushed:f')
+    message.react(':flushed:')
   }
 
+  if (!message.content.startsWith(prefix)) return;
+  
   if (command === 'ping') {
     const timeTaken = Date.now() - message.createdTimestamp;
     message.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
