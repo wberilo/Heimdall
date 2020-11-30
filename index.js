@@ -13,6 +13,7 @@ client.on('message', function (message) {
 
   if(message.content.includes('what') && message.content.includes('how')){
     message.react('❓')
+    message.react('❔')
   }
   if(message.content.includes('unless...')){
     message.react('😳')
