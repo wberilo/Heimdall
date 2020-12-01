@@ -1,6 +1,6 @@
 {
   "name": "heimdall-bot",
-  "version": "0.3.12",
+  "version": "0.4.12",
   "description": "dnd bot for discord servers.",
   "main": "index.js",
   "scripts": {

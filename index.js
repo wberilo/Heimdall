@@ -81,6 +81,7 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
       message.reply(`You can't bully yourself, wtf`)
     }
     bullyCharacters.push(bullied)
+    message.react('👍')
     console.log(bullyCharacters);
   }
   else if (command === 'stopbooli') {
