@@ -72,7 +72,7 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
   }
 
   else if (command === 'booli') {
-    bullyCharacters.push(message.content.match)
+    bullyCharacters.push(message.content.match(/\d+/)[0])
     console.log(bullyCharacters);
   }
 
