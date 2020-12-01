@@ -24,7 +24,7 @@ client.on('message', function (message) {
   }
   if (bullyCharacters.includes(message.author.id)){
     console.log('found someone to bully')
-    message.channel.send(`look at me, I'm ${message.author.username}, bleh bleh ${alternateCase(message.content)} *fart* *fart*`)
+    message.channel.send(`look at me, I'm **${message.author.username}** :nerd: **${alternateCase(message.content)}** *fart* :dash: *fart* :dash:`)
   }
 
   if (!message.content.startsWith(prefix)) return;
