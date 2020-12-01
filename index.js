@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = '&';
 const lib = require('./functions')
+const bullyCharacters = []
 
 client.on('message', function (message) {
   if (message.author.bot) return;
@@ -65,11 +66,14 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
   }
   
   else if (command === 'readlogs'){
-    console.log(message.content)
+    console.log(message.content.match(/\d+/)[0])
 
     console.log(message.author)
+  }
 
-
+  else if (command === 'booli') {
+    bullyCharacters.push(message.content.match)
+    console.log(bullyCharacters);
   }
 
   else if (command === 'help'){

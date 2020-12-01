@@ -174,6 +174,7 @@ function addToFile(message) {
 function grabCharacter(message) {
 
 }
+
 module.exports = {
   generateCharacter,
   fetchItemsFromJson,
