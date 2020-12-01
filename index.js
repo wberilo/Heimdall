@@ -77,9 +77,7 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
 
   else if (command === 'booli') {
     const bullied = message.content.match(/\d+/)[0]
-    console.log(message.content)
-    console.log(bullied)
-    if(bullied === message.author){
+    if(bullied === message.author.id){
       message.reply(`You can't bully yourself, wtf`)
     }
     bullyCharacters.push(bullied)
