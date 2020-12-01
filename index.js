@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = '&';
 const lib = require('./functions')
-const bullyCharacters = []
+let bullyCharacters = []
 
 client.on('message', function (message) {
   if (message.author.bot) return;
@@ -23,6 +23,11 @@ client.on('message', function (message) {
     message.react('😲')
   }
 
+  if (bullyCharacters.includes(message.author)){
+    console.log('found someone to bully')
+    message.channel.send(`look at me, I'm ${message.author.username}, bleh bleh ${alternateCase(message.content)} *fart* *fart*`)
+  }
+  
   if (!message.content.startsWith(prefix)) return;
 
   if (command === 'ping') {
@@ -72,8 +77,15 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
   }
 
   else if (command === 'booli') {
-    bullyCharacters.push(message.content.match(/\d+/)[0])
+    const bullied = message.content.match(/\d+/)[0]
+    if(bullied === message.author){
+      message.reply(`You can't bully yourself, wtf`)
+    }
+    bullyCharacters.push()
     console.log(bullyCharacters);
+  }
+  else if (command === 'stopbooli') {
+    bullyCharacters = []
   }
 
   else if (command === 'help'){
@@ -108,6 +120,14 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
 
   }
 });
+
+var alternateCase = function (s) {
+  var chars = s.toLowerCase().split("");
+  for (var i = 0; i < chars.length; i += 2) {
+    chars[i] = chars[i].toUpperCase();
+  }
+  return chars.join("");
+};
 
 client.login(process.env.TOKEN);
 //client.login(config.BOT_TOKEN);
