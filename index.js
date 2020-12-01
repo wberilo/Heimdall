@@ -22,8 +22,7 @@ client.on('message', function (message) {
   if(message.content.toLowerCase().includes('pog')){
     message.react('😲')
   }
-
-  if (bullyCharacters.includes(message.author)){
+  if (bullyCharacters.includes(message.author.id)){
     console.log('found someone to bully')
     message.channel.send(`look at me, I'm ${message.author.username}, bleh bleh ${alternateCase(message.content)} *fart* *fart*`)
   }
