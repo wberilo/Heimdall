@@ -27,7 +27,7 @@ client.on('message', function (message) {
     console.log('found someone to bully')
     message.channel.send(`look at me, I'm ${message.author.username}, bleh bleh ${alternateCase(message.content)} *fart* *fart*`)
   }
-  
+
   if (!message.content.startsWith(prefix)) return;
 
   if (command === 'ping') {
@@ -78,6 +78,8 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
 
   else if (command === 'booli') {
     const bullied = message.content.match(/\d+/)[0]
+    console.log(message.content)
+    console.log(bullied)
     if(bullied === message.author){
       message.reply(`You can't bully yourself, wtf`)
     }
