@@ -57,6 +57,12 @@ function fetchItemsFromJson(message){
 
 
 function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0, keepHighest = 0) {
+  if(min >= diceSize){
+    return{
+      string: `incorrect parameters, R cannot be higher or equal to the dice size`,
+      result: 0
+    }
+  }
   let total = 0;
   let arrayDice = [];
   for (let index = 0; index < numberOf; index++) {
@@ -65,8 +71,9 @@ function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0, keepHighest = 0
       total += die;
     }
     else{
-      die = `~~${die}~~ ` + min;
-      total += min;
+      const reroll = Math.floor(Math.random*(diceSize - min -1)) +1
+      die = `~~${die}~~ ` + reroll;
+      total += reroll;
     }
     arrayDice.push(die);
   }
