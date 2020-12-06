@@ -71,7 +71,7 @@ function rollDice(numberOf = 1, diceSize = 6, min = 0, plus = 0, keepHighest = 0
       total += die;
     }
     else{
-      const reroll = Math.floor(Math.random*(diceSize - min -1)) +1
+      const reroll = Math.floor(Math.random()*(diceSize - min -1)) +1
       die = `~~${die}~~ ` + reroll;
       total += reroll;
     }
