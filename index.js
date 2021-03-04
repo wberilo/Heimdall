@@ -33,6 +33,7 @@ client.on('message', function (message) {
       const runmsg = message.content.replace(/[0-9]+t+/,'')
       amount = amount.slice(0, -1);
       for(let i;i < amount; i++){
+        console.log('forloop')
         try {
           const rollCommand = runmsg.substring(runmsg.indexOf(" ") + 1)
           if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<') && !rollCommand.includes('r=') && !rollCommand.includes('ro')) {
