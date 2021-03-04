@@ -36,7 +36,7 @@ client.on('message', function (message) {
       console.log(amount)
       if(amount>99){
         amount = 99
-        message.reply('limiting roll amount `t` to 99...')
+        message.reply(`limiting roll amount \`t\` to 99...(this is gonna be a while, you're in for a bad time`)
       }
       for(let i = 0; i < amount; i++){
         console.log('forloop')
