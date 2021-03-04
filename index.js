@@ -29,8 +29,8 @@ client.on('message', function (message) {
 
   else if (command === 'dice' || command === 'd' || command === 'roll') {
     if(message.content.includes('t')){
-      let amount = message.content.match(/[0-9]+t+/);
-      console.log(message.content.match(/[0-9]+t+/))
+      let amount = message.content.match(/[0-9]+t+/)[0];
+      console.log(message.content.match(/[0-9]+t+/)[0])
       const runmsg = message.content.replace(/[0-9]+t+/,'')
       amount = amount.slice(0, -1);
       console.log(amount)
