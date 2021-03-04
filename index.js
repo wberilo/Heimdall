@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 //const config = require('./config.json');
-import * as rpgDiceRoller from 'rpg-dice-roller'
+const rpgDiceRoller = require('rpg-dice-roller');
 const client = new Discord.Client();
 const prefix = '&';
 const lib = require('./functions')
@@ -29,7 +29,7 @@ client.on('message', function (message) {
 
   else if (command === 'dice' || command === 'd') {
     try {
-      const rollCommand = message.content.substring(message.indexOf(" ") + 1)
+      const rollCommand = message.content.substring(message.content.indexOf(" ") + 1)
       if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<')) {
         const fixed = replaceAll(rollCommand, 'r', 'r<')
         const fixedRoll = new rpgDiceRoller.DiceRoll(fixed)
@@ -41,6 +41,7 @@ client.on('message', function (message) {
       }
 
     } catch (error) {
+      console.log(error)
       message.reply("Error:", error.message)
     }
   }
