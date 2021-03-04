@@ -34,6 +34,10 @@ client.on('message', function (message) {
       const runmsg = message.content.replace(/[0-9]+t+/,'')
       amount = amount.slice(0, -1);
       console.log(amount)
+      if(amount>99){
+        amount = 99
+        message.reply('limiting roll amount `t` to 99...')
+      }
       for(let i = 0; i < amount; i++){
         console.log('forloop')
         try {
