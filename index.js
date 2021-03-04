@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 //const config = require('./config.json');
+import * as rpgDiceRoller from 'rpg-dice-roller'
 const client = new Discord.Client();
 const prefix = '&';
 const lib = require('./functions')
@@ -7,24 +8,16 @@ let bullyCharacters = []
 
 client.on('message', function (message) {
   if (message.author.bot) return;
-  
+
   const commandBody = message.content.slice(prefix.length);
   const args = commandBody.split(' ');
   const command = args.shift().toLowerCase();
 
-  if(message.content.toLowerCase().includes('what') && message.content.includes('how')){
-    message.react('❓')
-    message.react('❔')
-  }
-  if(message.content.toLowerCase().includes('unless..') || message.content.toLowerCase().includes('unless?')){
+  if (message.content.toLowerCase().includes('unless..') || message.content.toLowerCase().includes('unless?')) {
     message.react('😳')
   }
-  if(message.content.toLowerCase().includes('pog')){
-    message.react('😲')
-  }
-  if (bullyCharacters.includes(message.author.id)){
-    console.log('found someone to bully')
-    message.channel.send(`**${alternateCase(message.content)}**`)
+  if (message.content.toLowerCase().includes('bot sucks')) {
+    message.reply('no u')
   }
 
   if (!message.content.startsWith(prefix)) return;
@@ -35,6 +28,24 @@ client.on('message', function (message) {
   }
 
   else if (command === 'dice' || command === 'd') {
+    try {
+      const rollCommand = message.content.substring(message.indexOf(" ") + 1)
+      if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<')) {
+        const fixed = replaceAll(rollCommand, 'r', 'r<')
+        const fixedRoll = new rpgDiceRoller.DiceRoll(fixed)
+        message.reply(fixedRoll.output)
+      }
+      else {
+        const roll = new rpgDiceRoller.DiceRoll(rollCommand)
+        message.reply(roll.output);
+      }
+
+    } catch (error) {
+      message.reply("Error:", error.message)
+    }
+  }
+
+  else if (command === 'olddice' || command === 'od') {
     const filtered = args.filter((arg) => /\d/.test(arg));
     if (filtered === [] || filtered[0] === undefined) {
       message.reply(`Incorrect parameters
@@ -42,84 +53,37 @@ input should look like: \`5d6\` or \`5d6r2+4\`
 where: \`<DICE NUMBER>\`**D**\`<DICE SIZE>\`**R**\`<MINIMUM NUMBER>\`**+**\`<ADDED>\` 
 valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
 `);
-    } 
-    else{
+    }
+    else {
       message.reply(lib.parseNumbers(filtered[0]).string)
     }
-  } 
-  
+  }
+
   else if (command === 'meme') {
     lib.grabMeem(message);
-  } 
+  }
 
   else if (command === 'writedown') {
     lib.addToFile(message);
     console.log(message.author.id);
   }
 
-  else if (command === 'spells'){
+  else if (command === 'spells') {
 
   }
 
-  else if (command === 'items'){
+  else if (command === 'items') {
     lib.fetchItemsFromJson(message)
   }
 
-  else if (command === 'feats'){
-
-  }
-  
-  else if (command === 'readlogs'){
-    console.log(message.content.match(/\d+/)[0])
-
-    console.log(message.author)
-  }
-
-  else if (command === 'booli') {
-    const bullied = message.content.match(/\d+/)[0]
-    if(bullied === message.author.id){
-      message.reply(`You can't bully yourself, wtf`)
-    }
-    bullyCharacters.push(bullied)
-    message.react('👍')
-    console.log(bullyCharacters);
-  }
-  else if (command === 'stopbooli') {
-    bullyCharacters = []
-  }
-
-  else if (command === 'help'){
-    message.channel.send(``)
-  }
-
-  else if (command === 'rollcharacter'){
-    message.reply('\n'+lib.generateCharacter())
-  }
-
-  else if (command === 'steal'){
-    message.channel.send(':rage: Steal '+args[0]+`'s stuff :rage:`)
-  }
-  else if (command === 'writecharacter'){
-  }
-  else if (command === 'readcharacter'){
-  }
-
-  else if (command === 'yeet'){
-
-  }
-  
-  else if (command === 'feedm'){
-    message.channel.send(':rage: Feed the DM :rage:')
-  }
-
-  else if (command === 'markov'){
-
-  }
-  
-  else if (command === 'conditions'){
-
+  else if (command === 'rollcharacter') {
+    message.reply('\n' + lib.generateCharacter())
   }
 });
+
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
 
 var alternateCase = function (s) {
   var chars = s.toLowerCase().split("");
