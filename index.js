@@ -27,7 +27,7 @@ client.on('message', function (message) {
     message.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
   }
 
-  else if (command === 'dice' || command === 'd') {
+  else if (command === 'dice' || command === 'd' || command === 'roll') {
     try {
       const rollCommand = message.content.substring(message.content.indexOf(" ") + 1)
       if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<')) {
