@@ -28,22 +28,48 @@ client.on('message', function (message) {
   }
 
   else if (command === 'dice' || command === 'd' || command === 'roll') {
-    try {
-      const rollCommand = message.content.substring(message.content.indexOf(" ") + 1)
-      if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<') && !rollCommand.includes('r=') && !rollCommand.includes('ro')) {
-        const fixed = replaceAll(rollCommand, 'r', 'r<')
-        const fixedRoll = new rpgDiceRoller.DiceRoll(fixed)
-        message.reply(fixedRoll.output)
+    if(message.content.includes('t')){
+      const amount = message.content.match(/[0-9]+t+/);
+      const runmsg = message.content.replace(/[0-9]+t+/,'')
+      amount = amount.slice(0, -1);
+      for(let i;i < amount; i++){
+        try {
+          const rollCommand = runmsg.substring(runmsg.indexOf(" ") + 1)
+          if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<') && !rollCommand.includes('r=') && !rollCommand.includes('ro')) {
+            const fixed = replaceAll(rollCommand, 'r', 'r<')
+            const fixedRoll = new rpgDiceRoller.DiceRoll(fixed)
+            message.reply(fixedRoll.output)
+          }
+          else {
+            const roll = new rpgDiceRoller.DiceRoll(rollCommand)
+            message.reply(roll.output);
+          }
+    
+        } catch (error) {
+          console.log(error)
+          message.reply("Error:", error.message)
+        }
       }
-      else {
-        const roll = new rpgDiceRoller.DiceRoll(rollCommand)
-        message.reply(roll.output);
-      }
-
-    } catch (error) {
-      console.log(error)
-      message.reply("Error:", error.message)
     }
+    else{
+      try {
+        const rollCommand = message.content.substring(message.content.indexOf(" ") + 1)
+        if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<') && !rollCommand.includes('r=') && !rollCommand.includes('ro')) {
+          const fixed = replaceAll(rollCommand, 'r', 'r<')
+          const fixedRoll = new rpgDiceRoller.DiceRoll(fixed)
+          message.reply(fixedRoll.output)
+        }
+        else {
+          const roll = new rpgDiceRoller.DiceRoll(rollCommand)
+          message.reply(roll.output);
+        }
+  
+      } catch (error) {
+        console.log(error)
+        message.reply("Error:", error.message)
+      }
+    }
+    
   }
 
   else if (command === 'olddice' || command === 'od') {
