@@ -45,11 +45,11 @@ client.on('message', function (message) {
           if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<') && !rollCommand.includes('r=') && !rollCommand.includes('ro')) {
             const fixed = replaceAll(rollCommand, 'r', 'r<')
             const fixedRoll = new rpgDiceRoller.DiceRoll(fixed)
-            message.reply(fixedRoll.output)
+            message.reply(i+1+' '+fixedRoll.output)
           }
           else {
             const roll = new rpgDiceRoller.DiceRoll(rollCommand)
-            message.reply(roll.output);
+            message.reply(i+1+' '+roll.output);
           }
     
         } catch (error) {
