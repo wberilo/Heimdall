@@ -32,7 +32,8 @@ client.on('message', function (message) {
       let amount = message.content.match(/[0-9]+t+/);
       const runmsg = message.content.replace(/[0-9]+t+/,'')
       amount = amount.slice(0, -1);
-      for(let i;i < amount; i++){
+      console.log(amount)
+      for(let i; i < amount; i++){
         console.log('forloop')
         try {
           const rollCommand = runmsg.substring(runmsg.indexOf(" ") + 1)
