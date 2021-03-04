@@ -29,7 +29,7 @@ client.on('message', function (message) {
 
   else if (command === 'dice' || command === 'd' || command === 'roll') {
     if(message.content.includes('t')){
-      const amount = message.content.match(/[0-9]+t+/);
+      let amount = message.content.match(/[0-9]+t+/);
       const runmsg = message.content.replace(/[0-9]+t+/,'')
       amount = amount.slice(0, -1);
       for(let i;i < amount; i++){
