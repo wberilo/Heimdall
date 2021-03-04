@@ -30,7 +30,7 @@ client.on('message', function (message) {
   else if (command === 'dice' || command === 'd' || command === 'roll') {
     try {
       const rollCommand = message.content.substring(message.content.indexOf(" ") + 1)
-      if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<') && !rollCommand.includes('r=')) {
+      if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<') && !rollCommand.includes('r=') && !rollCommand.includes('ro')) {
         const fixed = replaceAll(rollCommand, 'r', 'r<')
         const fixedRoll = new rpgDiceRoller.DiceRoll(fixed)
         message.reply(fixedRoll.output)
