@@ -1,6 +1,6 @@
 {
   "name": "heimdall-bot",
-  "version": "0.5",
+  "version": "0.5.2",
   "description": "dnd bot for discord servers.",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.1",
+    "mathjs": "^9.2.0",
     "node-fetch": "^2.6.1",
     "rpg-dice-roller": "^4.5.2"
   },
