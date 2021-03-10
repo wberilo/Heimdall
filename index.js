@@ -17,7 +17,8 @@ client.on('message', function (message) {
     message.react('😳')
   }
   if (message.content.toLowerCase().includes('bot sucks')) {
-    message.reply('no u')
+    const attachment = new Discord.MessageAttachment('https://emoji.gg/assets/emoji/7689_unoreversecard.png');
+    message.channel.send(attachment);
   }
 
   if (!message.content.startsWith(prefix)) return;
@@ -55,6 +56,7 @@ client.on('message', function (message) {
         } catch (error) {
           console.log(error)
           message.reply("Error:", error.message)
+          break;
         }
       }
     }
