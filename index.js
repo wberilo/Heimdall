@@ -103,7 +103,7 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
   }
 
   else if (command === 'fools') {
-    console.log(txtgen.setNouns(["Shaggy","Wolf","Shak","King Riki","Tori","Jaab","Unlucky","Rukie","Corrupt","Ginger","Monkey","Kelga","Rardann","Three Riddle","Mby123","Brock"]))
+    console.log(txtgen.setNouns(["Shaggy","Flower","Eye","Wind","Game","Dungeon master","Mind","Kitty","Ring","Time","Fish","Bird","Wolf","Shak","King Riki","Tori","Jaab","Unlucky","Rukie","Corrupt","Ginger","Monkey","Kelga","Rardann","Three Riddle","Mby123","Brock"]))
     message.channel.send(txtgen.sentence());
   }
 
