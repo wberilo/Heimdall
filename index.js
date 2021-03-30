@@ -126,6 +126,13 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
     console.log(gen);
     message.channel.send(`${gen.storyhook}`)
   }
+  else if (command === 'rndmagicitem') {
+    const gen = fantasyGen.MagicItems.generate();
+    console.log(gen);
+    const outmessage = `**${gen.formattedData.title}**\n${gen.type} : ${gen.subtype} \n${gen.powerlevel} ${gen.schoolOfMagic} item`
+    gen.effects.foreach(effect => outmessage = outmessage + effect + '\n')
+    message.channel.send(outmessage)
+  }
 
 });
 
