@@ -4,6 +4,7 @@ const rpgDiceRoller = require('rpg-dice-roller');
 const client = new Discord.Client();
 const prefix = '&';
 const lib = require('./functions')
+const txtgen = require('txtgen');
 let bullyCharacters = []
 
 client.on('message', function (message) {
@@ -13,9 +14,6 @@ client.on('message', function (message) {
   const args = commandBody.split(' ');
   const command = args.shift().toLowerCase();
 
-  if (message.content.toLowerCase().includes('unless..') || message.content.toLowerCase().includes('unless?')) {
-    message.react('😳')
-  }
   if (message.content.toLowerCase().includes('bot sucks')) {
     const attachment = new Discord.MessageAttachment('https://emoji.gg/assets/emoji/7689_unoreversecard.png');
     message.channel.send(attachment);
@@ -104,8 +102,9 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
     console.log(message.author.id);
   }
 
-  else if (command === 'spells') {
-
+  else if (command === 'fools') {
+    console.log(txtgen.setNouns(["Shaggy","Wolf","Shak","King Riki","Tori","Jaab","Unlucky","Rukie","Corrupt","Ginger","Monkey","Kelga","Rardann","Three Riddle","Mby123","Brock"]))
+    message.channel.send(txtgen.sentence());
   }
 
   else if (command === 'items') {
