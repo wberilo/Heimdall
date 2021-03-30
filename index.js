@@ -144,6 +144,16 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
     }
     message.channel.send(outmessage)
   }
+  else if (command === 'rndloot') {
+    const gen = fantasyGen.Loots.generate();
+    console.log(gen)
+    let outmessage = ''
+    for (i = 0; i < gen.lootItems.length; i++) {
+      console.log('once')
+      outmessage = outmessage + gen.lootItems[i] + '\n';
+    }
+    message.channel.send(outmessage)
+  }
 
 });
 
