@@ -5,6 +5,7 @@ const client = new Discord.Client();
 const prefix = '&';
 const lib = require('./functions')
 const txtgen = require('txtgen');
+const fantasyGen = require('fantasy-content-generator')
 let bullyCharacters = []
 
 client.on('message', function (message) {
@@ -113,6 +114,11 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
 
   else if (command === 'rollcharacter') {
     message.reply('\n' + lib.generateCharacter())
+  }
+
+  else if (command === 'rnd') {
+    const gen = fantasyGen.NPCs.generate();
+    message.channel.send(`name:${gen.name} \n race: ${gen.race}\n gender:${gen.gender}\n traits:${gen.traits[0]}\n desires:${gen.desires[0]}`)
   }
 });
 
