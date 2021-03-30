@@ -118,7 +118,8 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
 
   else if (command === 'rnd') {
     const gen = fantasyGen.NPCs.generate();
-    message.channel.send(`name:${gen.name} \n race: ${gen.race}\n gender:${gen.gender}\n traits:${gen.traits[0]}\n desires:${gen.desires[0]}`)
+    console.log(gen);
+    message.channel.send(`name:${gen.name} \nrace: ${gen.race}\ngender: ${gen.gender}\ntraits: ${gen.traits[0]}\ndesires: ${gen.desires[0]}`)
   }
 });
 
