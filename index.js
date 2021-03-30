@@ -116,12 +116,12 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
     message.reply('\n' + lib.generateCharacter())
   }
 
-  else if (command === 'rndNPC' || command === 'rnd') {
+  else if (command === 'rndnpc' || command === 'rnd') {
     const gen = fantasyGen.NPCs.generate();
     console.log(gen);
     message.channel.send(`name: ${gen.formattedData.name} \nrace: ${gen.race}\ngender: ${gen.gender}\ntraits: ${gen.traits[0]}\ndesires: ${gen.desires[0]}`)
   }
-  else if (command === 'rndSTORY') {
+  else if (command === 'rndstory') {
     const gen = fantasyGen.Storyhooks.npcActs();
     console.log(gen);
     message.channel.send(`${gen.storyhook}`)
