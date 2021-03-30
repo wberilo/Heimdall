@@ -28,30 +28,30 @@ client.on('message', function (message) {
   }
 
   else if (command === 'dice' || command === 'd' || command === 'roll') {
-    if(message.content.includes('t')){
+    if (message.content.includes('t')) {
       let amount = message.content.match(/[0-9]+t+/)[0];
       console.log(message.content.match(/[0-9]+t+/)[0])
-      const runmsg = message.content.replace(/[0-9]+t+/,'')
+      const runmsg = message.content.replace(/[0-9]+t+/, '')
       amount = amount.slice(0, -1);
       console.log(amount)
-      if(amount>99){
+      if (amount > 99) {
         amount = 99
         message.reply(`limiting roll amount \`t\` to 99...(this is gonna be a while, you're in for a bad time`)
       }
-      for(let i = 0; i < amount; i++){
+      for (let i = 0; i < amount; i++) {
         console.log('forloop')
         try {
           const rollCommand = runmsg.substring(runmsg.indexOf(" ") + 1)
           if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<') && !rollCommand.includes('r=') && !rollCommand.includes('ro')) {
             const fixed = replaceAll(rollCommand, 'r', 'r<')
             const fixedRoll = new rpgDiceRoller.DiceRoll(fixed)
-            message.reply(i+1+' '+fixedRoll.output)
+            message.reply(i + 1 + ' ' + fixedRoll.output)
           }
           else {
             const roll = new rpgDiceRoller.DiceRoll(rollCommand)
-            message.reply(i+1+' '+roll.output);
+            message.reply(i + 1 + ' ' + roll.output);
           }
-    
+
         } catch (error) {
           console.log(error)
           message.reply("Error:", error.message)
@@ -59,7 +59,7 @@ client.on('message', function (message) {
         }
       }
     }
-    else{
+    else {
       try {
         const rollCommand = message.content.substring(message.content.indexOf(" ") + 1)
         if (rollCommand.includes('r') && !rollCommand.includes('r<') && !rollCommand.includes('r<') && !rollCommand.includes('r=') && !rollCommand.includes('ro')) {
@@ -71,13 +71,13 @@ client.on('message', function (message) {
           const roll = new rpgDiceRoller.DiceRoll(rollCommand)
           message.reply(roll.output);
         }
-  
+
       } catch (error) {
         console.log(error)
         message.reply("Error:", error.message)
       }
     }
-    
+
   }
 
   else if (command === 'olddice' || command === 'od') {
@@ -104,7 +104,7 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
   }
 
   else if (command === 'fools') {
-    console.log(txtgen.setNouns(["Shaggy","Flower","Eye","Wind","Game","Dungeon master","Mind","Kitty","Ring","Time","Fish","Bird","Wolf","Shak","King Riki","Tori","Jaab","Unlucky","Rukie","Corrupt","Ginger","Monkey","Kelga","Rardann","Three Riddle","Mby123","Brock"]))
+    console.log(txtgen.setNouns(["Shaggy", "Flower", "Eye", "Wind", "Game", "Dungeon master", "Mind", "Kitty", "Ring", "Time", "Fish", "Bird", "Wolf", "Shak", "King Riki", "Tori", "Jaab", "Unlucky", "Rukie", "Corrupt", "Ginger", "Monkey", "Kelga", "Rardann", "Three Riddle", "Mby123", "Brock"]))
     message.channel.send(txtgen.sentence());
   }
 
@@ -128,10 +128,11 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
   }
   else if (command === 'rndmagicitem') {
     const gen = fantasyGen.MagicItems.generate();
+    console.log(gen)
     let outmessage = `**${gen.formattedData.title}**\n${gen.type} : ${gen.subtype} \n${gen.powerLevel} ${gen.schoolOfMagic} item\n`
-    for(i = 0; i < gen.effects.length; i++){
+    for (i = 0; i < gen.effects.length; i++) {
       console.log('once')
-      outmessage = outmessage + effects[i] + '\n';
+      outmessage = outmessage + gen.effects[i] + '\n';
     }
     message.channel.send(outmessage)
   }
