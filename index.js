@@ -29,11 +29,15 @@ client.on('message', function (message) {
 
   if (command === 'clear') {
     const clear = async () => {
-      let deleted;
-      do {
-        deleted = await message.channel.bulkDelete(100);
-      } while (deleted.size != 0);
-      message.delete({ timeout: 5000})
+      try {
+        let deleted;
+        do {
+          deleted = await message.channel.bulkDelete(100);
+        } while (deleted.size != 0);
+        message.delete({ timeout: 10000})
+      } catch (error) {
+        console.log(error);
+      }
     }
     if(message.member.roles.cache.some(role => role.name === 'Botmaster')){
       clear();
