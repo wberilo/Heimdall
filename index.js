@@ -28,14 +28,18 @@ client.on('message', function (message) {
   }
 
   if (command === 'clear') {
-    message.reply(`no 🙂`);
     const clear = async () => {
       let deleted;
       do {
         deleted = await message.channel.bulkDelete(100);
       } while (deleted.size != 0);
     }
-    // clear();
+    if(message.member.roles.find(r => r.name === "Botmaster")){
+      clear();
+    }
+    else{
+      message.reply(`no 🙂`);
+    }
   }
 
   else if (command === 'dice' || command === 'd' || command === 'roll') {
