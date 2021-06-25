@@ -34,7 +34,7 @@ client.on('message', function (message) {
         deleted = await message.channel.bulkDelete(100);
       } while (deleted.size != 0);
     }
-    if(message.member.roles.find(r => r.name === "Botmaster")){
+    if(message.member.roles.cache.some(role => role.name === 'Botmaster')){
       clear();
     }
     else{
