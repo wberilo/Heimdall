@@ -28,10 +28,11 @@ client.on('message', function (message) {
   }
 
   if (command === 'clear') {
-    async function clear() {
-        message.delete();
-        const fetched = await message.channel.fetchMessages({limit: 99});
-        message.channel.bulkDelete(fetched);
+    const clear = async () => {
+      let deleted;
+      do {
+        deleted = await channel.bulkDelete(100);
+      } while (deleted.size != 0);
     }
     clear();
   }
