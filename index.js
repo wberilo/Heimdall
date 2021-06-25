@@ -29,9 +29,9 @@ client.on('message', function (message) {
 
   if (command === 'clear') {
     async function clear() {
-        msg.delete();
-        const fetched = await msg.channel.fetchMessages({limit: 99});
-        msg.channel.bulkDelete(fetched);
+        message.delete();
+        const fetched = await message.channel.fetchMessages({limit: 99});
+        message.channel.bulkDelete(fetched);
     }
     clear();
   }
