@@ -27,14 +27,14 @@ client.on('message', function (message) {
     message.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
   }
 
-  if (command === 'ohmygodSecretWordOnlyShakShouldUseThisCommandPlacenta') {
+  if (command === 'clear') {
     async function clear() {
         msg.delete();
         const fetched = await msg.channel.fetchMessages({limit: 99});
         msg.channel.bulkDelete(fetched);
     }
     clear();
-}
+  }
 
   else if (command === 'dice' || command === 'd' || command === 'roll') {
     if (message.content.includes('t')) {
