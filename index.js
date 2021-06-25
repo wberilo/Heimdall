@@ -34,7 +34,6 @@ client.on('message', function (message) {
         do {
           deleted = await message.channel.bulkDelete(100);
         } while (deleted.size != 0);
-        message.delete({ timeout: 10000})
       } catch (error) {
         console.log(error);
       }
