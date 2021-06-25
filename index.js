@@ -31,7 +31,7 @@ client.on('message', function (message) {
     const clear = async () => {
       let deleted;
       do {
-        deleted = await channel.bulkDelete(100);
+        deleted = await message.channel.bulkDelete(100);
       } while (deleted.size != 0);
     }
     clear();
