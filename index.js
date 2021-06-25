@@ -27,6 +27,15 @@ client.on('message', function (message) {
     message.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
   }
 
+  if (command === 'ohmygodSecretWordOnlyShakShouldUseThisCommandPlacenta') {
+    async function clear() {
+        msg.delete();
+        const fetched = await msg.channel.fetchMessages({limit: 99});
+        msg.channel.bulkDelete(fetched);
+    }
+    clear();
+}
+
   else if (command === 'dice' || command === 'd' || command === 'roll') {
     if (message.content.includes('t')) {
       let amount = message.content.match(/[0-9]+t+/)[0];
@@ -153,6 +162,7 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
       outmessage = outmessage + gen.lootItems[i] + '\n';
     }
     message.channel.send(outmessage)
+
   }
 
 });

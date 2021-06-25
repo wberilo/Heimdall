@@ -1,0 +1,99 @@
+<!-- Start of Resources and States checks for the rolls-->
+[H: Miss = input("Level|2nd Level, 3rd Level, 4th Level, 5th Level, 6th Level, 7th Level, 8th Level, 9th Level|Spell Level?|RADIO|VALUE=NUM")]
+
+[h: Abort(Miss)]
+[h: Level = Level + 2]
+    
+    [h, if(Level == 2), CODE: {
+    		[h: Spell = getStrProp(SpellPoints, "s2lvl")]
+    		[h: assert(Spell >= 1, "Not enough Spell Slots of this level", 0)]
+    		[h: SpellPoints=setStrProp (SpellPoints, "s2lvl", getStrProp(SpellPoints, "s2lvl") - 1)]
+    	} ; {}]
+    [h, if(Level == 3), CODE: {
+    		[h: Spell = getStrProp(SpellPoints, "s3lvl")]
+    		[h: assert(Spell >= 1, "Not enough Spell Slots of this level", 0)]
+    		[h: SpellPoints=setStrProp (SpellPoints, "s3lvl", getStrProp(SpellPoints, "s3lvl") - 1)]
+    	} ; {}]
+    [h, if(Level == 4), CODE: {
+    		[h: Spell = getStrProp(SpellPoints, "s4lvl")]
+    		[h: assert(Spell >= 1, "Not enough Spell Slots of this level", 0)]
+    		[h: SpellPoints=setStrProp (SpellPoints, "s4lvl", getStrProp(SpellPoints, "s4lvl") - 1)]
+    	} ; {}]
+    [h, if(Level == 5), CODE: {
+    		[h: Spell = getStrProp(SpellPoints, "s5lvl")]
+    		[h: assert(Spell >= 1, "Not enough Spell Slots of this level", 0)]
+    		[h: SpellPoints=setStrProp (SpellPoints, "s5lvl", getStrProp(SpellPoints, "s5lvl") - 1)]
+    	} ; {}]
+    [h, if(Level == 6), CODE: {
+    		[h: Spell = getStrProp(SpellPoints, "s6lvl")]
+    		[h: assert(Spell >= 1, "Not enough Spell Slots of this level", 0)]
+    		[h: SpellPoints=setStrProp (SpellPoints, "s6lvl", getStrProp(SpellPoints, "s6lvl") - 1)]
+    	} ; {}]
+    [h, if(Level == 7), CODE: {
+    		[h: Spell = getStrProp(SpellPoints, "s7lvl")]
+    		[h: assert(Spell >= 1, "Not enough Spell Slots of this level", 0)]
+    		[h: SpellPoints=setStrProp (SpellPoints, "s7lvl", getStrProp(SpellPoints, "s7lvl") - 1)]
+    	} ; {}]
+    [h, if(Level == 8), CODE: {
+    		[h: Spell = getStrProp(SpellPoints, "s8lvl")]
+    		[h: assert(Spell >= 1, "Not enough Spell Slots of this level", 0)]
+    		[h: SpellPoints=setStrProp (SpellPoints, "s8lvl", getStrProp(SpellPoints, "s8lvl") - 1)]
+    	} ; {}]
+    [h, if(Level == 9), CODE: {
+    		[h: Spell = getStrProp(SpellPoints, "s9lvl")]
+    		[h: assert(Spell >= 1, "Not enough Spell Slots of this level", 0)]
+    		[h: SpellPoints=setStrProp (SpellPoints, "s9lvl", getStrProp(SpellPoints, "s9lvl") - 1)]
+    	} ; {}]
+<!-- End of Resources and States checks for the rolls-->
+
+<!-- Start of Modifiers checks for the spell-->
+[h: StatMod= floor((CHAbase - 10)/2)]
+<!-- End of Modifiers checks for the spell-->
+
+<!-- Start of Damage specifiers for the spell-->
+[h: DMGBase1 = 1d8] [h: DMGBase2 = 1d8] [h: DMGBase3 = 1d8]
+
+[h: DMGUp3rd = 0] [h: DMGUp4th = 0] [h: DMGUp5th = 0]
+[h: DMGUp6th = 0] [h: DMGUp7th = 0] [h: DMGUp8th = 0]
+[h: DMGUp9th = 0]
+<!-- End of Damage Specifiers for the spell-->
+
+<!-- Start of Additional states for the spell-->
+[h, if(Level >= 3), CODE: {[t: DMGUp3rd = 1d8]} ; {}]
+[h, if(Level >= 4), CODE: {[t: DMGUp4th = 1d8]} ; {}]
+[h, if(Level >= 5), CODE: {[t: DMGUp5th = 1d8]} ; {}]
+[h, if(Level >= 6), CODE: {[t: DMGUp6th = 1d8]} ; {}]
+[h, if(Level >= 7), CODE: {[t: DMGUp7th = 1d8]} ; {}]
+[h, if(Level >= 8), CODE: {[t: DMGUp8th = 1d8]} ; {}]
+[h, if(Level >= 9), CODE: {[t: DMGUp9th = 1d8]} ; {}]
+<!-- End of Additional States for the Spell-->
+
+<!-- Start of Qualities of the Spell-->
+<br>
+<span style = "color:#A66384" title= '<html>
+
+<b style="color:#A66384">Shatter</b>: <br>
+<b style="color:red">Evocation spell</b> <br>
+<b style="color:red">Casting Time:</b> <b>1 action</b><br>
+<b style="color:red">Range:</b> <b>60 ft.</b><br>
+<b style="color:red">Components:</b> <b>V, S, M</b> <br>
+<b style="color:red">Duration:</b> <b>Instantaneous</b><br>
+<b style="color:red">Cast at Level [r: Level]</b>
+
+</html>'>
+<b><i><u>[r: getMacroName()]</u></i></b>
+</span> <br />
+<br>
+<!-- End of Qualities of the Spell-->
+
+<!-- Start of Descriptors for the spell-->
+You make a <b style="color:#00559b"> loud, ringing noise within range, being intense enough to cause damage.</b><br>
+<!-- End of Descriptors for the spell-->
+
+<!-- Start of Spell Circumstances calculations-->
+<!-- End of Spell Circumstances Calculations-->
+
+<!-- Start of Spell Damage Calculations-->
+[h: Total = max(DMGBase1+DMGBase2+DMGBase3+DMGUp3rd+DMGUp4th+DMGUp5th+DMGUp6th+DMGUp7th+DMGUp8th+DMGUp9th, 0)]
+Each creature in a <b>10 ft. radius sphere centered on a point you can see within range</b> must make a <b>DC [t: max(8+Proficiency+StatMod, 0)]</b> <b style="color:rgb(255, 0, 0)">Constitution saving throw</b> or take <b style="color:#A66384">[t: Total] Thunder damage</b> on a fail, taking only <b style="color:#be005f">[t: floor(Total/2)] Thunder damage</b> on a success. A creature made from <b>inorganic material has disadvantage on the save.</b> Unatended objects also take the damage.
+<!-- End of Spell Damage Calculations-->
