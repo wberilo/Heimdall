@@ -33,6 +33,7 @@ client.on('message', function (message) {
       do {
         deleted = await message.channel.bulkDelete(100);
       } while (deleted.size != 0);
+      message.delete({ timeout: 5000})
     }
     if(message.member.roles.cache.some(role => role.name === 'Botmaster')){
       clear();
