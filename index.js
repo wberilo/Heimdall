@@ -27,9 +27,6 @@ twitchClient.on('chat', (channel, tags, message, self) => {
   console.log(message)
   if(self) return;
 
-  const roll = new rpgDiceRoller.DiceRoll(rollCommand)
-  message.reply(roll.output);
-
 	if(message.toLowerCase() === '&d') {
 		// "@alca, heya!"
     const rollCommand = message.content.substring(message.content.indexOf(" ") + 1)
