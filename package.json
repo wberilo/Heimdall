@@ -11,11 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.1",
+    "dotenv": "^10.0.0",
     "fantasy-content-generator": "^4.6.7",
     "mathjs": "^9.2.0",
     "node-fetch": "^2.6.1",
     "reaction-role": "^3.2.3",
     "rpg-dice-roller": "^4.5.2",
+    "tmi.js": "^1.8.3",
     "txtgen": "^2.2.8"
   },
   "devDependencies": {

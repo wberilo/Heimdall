@@ -1,14 +1,39 @@
 const Discord = require('discord.js');
-//const config = require('./config.json');
+const tmi = require('tmi.js');
+require('dotenv').config()
+
 const rpgDiceRoller = require('rpg-dice-roller');
-const client = new Discord.Client();
+
+const discordClient = new Discord.Client();
+
+const twitchClient = new tmi.Client({
+	options: { debug: true },
+	identity: {
+		username: 'HeimdallDnD',
+		password: process.env.TWITCH_PASSWORD
+	},
+	channels: [ 'illegalshak', 'MrChaggy' ]
+});
+
+twitchClient.connect()
+
 const prefix = '&';
 const lib = require('./functions')
 const txtgen = require('txtgen');
 const fantasyGen = require('fantasy-content-generator')
 let bullyCharacters = []
 
-client.on('message', function (message) {
+twitchClient.on('chat', (channel, tags, message, self) => {
+  console.log(message)
+  if(self) return;
+
+	if(message.toLowerCase() === '!hello') {
+		// "@alca, heya!"
+		twitchClient.say(channel, `@${tags.username}, heya!`);
+	}
+});
+
+discordClient.on('message', function (message) {
   if (message.author.bot) return;
 
   const commandBody = message.content.slice(prefix.length);
@@ -26,7 +51,6 @@ client.on('message', function (message) {
     const timeTaken = Date.now() - message.createdTimestamp;
     message.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
   }
-
   if (command === 'clear') {
     const clear = async () => {
       try {
@@ -45,7 +69,6 @@ client.on('message', function (message) {
       message.reply(`no 🙂`);
     }
   }
-
   else if (command === 'dice' || command === 'd' || command === 'roll') {
     if (message.content.includes('t')) {
       let amount = message.content.match(/[0-9]+t+/)[0];
@@ -98,7 +121,6 @@ client.on('message', function (message) {
     }
 
   }
-
   else if (command === 'olddice' || command === 'od') {
     const filtered = args.filter((arg) => /\d/.test(arg));
     if (filtered === [] || filtered[0] === undefined) {
@@ -112,29 +134,15 @@ valid imputs: \`5d6\` \`5d6r2+4\` \`5d6r0+4\` \`5d6r4\` \`d6\`
       message.reply(lib.parseNumbers(filtered[0]).string)
     }
   }
-
   else if (command === 'meme') {
     lib.grabMeem(message);
   }
-
-  else if (command === 'writedown') {
-    lib.addToFile(message);
-    console.log(message.author.id);
-  }
-
-  else if (command === 'fools') {
-    console.log(txtgen.setNouns(["Shaggy", "Flower", "Eye", "Wind", "Game", "Dungeon master", "Mind", "Kitty", "Ring", "Time", "Fish", "Bird", "Wolf", "Shak", "King Riki", "Tori", "Jaab", "Unlucky", "Rukie", "Corrupt", "Ginger", "Monkey", "Kelga", "Rardann", "Three Riddle", "Mby123", "Brock"]))
-    message.channel.send(txtgen.sentence());
-  }
-
   else if (command === 'items') {
     lib.fetchItemsFromJson(message)
   }
-
   else if (command === 'rollcharacter') {
     message.reply('\n' + lib.generateCharacter())
   }
-
   else if (command === 'rndnpc' || command === 'rnd') {
     const gen = fantasyGen.NPCs.generate();
     console.log(gen);
@@ -181,13 +189,5 @@ function replaceAll(str, find, replace) {
   return str.replace(new RegExp(find, 'g'), replace);
 }
 
-var alternateCase = function (s) {
-  var chars = s.toLowerCase().split("");
-  for (var i = 0; i < chars.length; i += 2) {
-    chars[i] = chars[i].toUpperCase();
-  }
-  return chars.join("");
-};
-
-client.login(process.env.TOKEN);
+discordClient.login(process.env.DISCORD_TOKEN);
 //client.login(config.BOT_TOKEN);
