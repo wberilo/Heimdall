@@ -27,9 +27,14 @@ twitchClient.on('chat', (channel, tags, message, self) => {
   console.log(message)
   if(self) return;
 
-	if(message.toLowerCase() === '!hello') {
+  const roll = new rpgDiceRoller.DiceRoll(rollCommand)
+  message.reply(roll.output);
+
+	if(message.toLowerCase() === '&d') {
 		// "@alca, heya!"
-		twitchClient.say(channel, `@${tags.username}, heya!`);
+    const rollCommand = message.content.substring(message.content.indexOf(" ") + 1)
+    const roll = new rpgDiceRoller.DiceRoll(rollCommand)
+		twitchClient.say(channel, roll.output);
 	}
 });
 
