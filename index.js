@@ -70,6 +70,9 @@ discordClient.on('messageReactionAdd', async (reaction, user) => {
           console.log(error);
         }
       }
+      else(
+        console.log(user)
+      )
     })
     //const role = reaction.message.author.guild.roles.cach
     //a.forEach(user => )
