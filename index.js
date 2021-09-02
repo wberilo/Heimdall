@@ -55,8 +55,6 @@ discordClient.on('messageReactionAdd', async (reaction, user) => {
 	console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction! from`);
   try {
     const a = await reaction.users.fetch()
-    console.log(a);
-    console.log(reaction);
     const role = await reaction.message.guild.roles.cache.find(role => role.name === "Adventurer")
     //console.log(role);
 
