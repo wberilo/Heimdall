@@ -49,6 +49,8 @@ discordClient.on('messageReactionAdd', async (reaction, user) => {
 		}
 	}
 
+  if (!reaction.message.content.includes('please react to this post with a thumbs up')) return;
+
 	// Now the message has been cached and is fully available
 	console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction! from`);
   try {
