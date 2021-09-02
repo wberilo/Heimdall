@@ -57,7 +57,7 @@ discordClient.on('messageReactionAdd', async (reaction, user) => {
     console.log(reaction);
     const role = await reaction.message.guild.roles.cache.find(role => role.name === "Adventurer")
     //console.log(role);
-    a.forEach(user => reaction.message.guild.member(user).options.getMember.roles.add(role))
+    a.forEach(user => reaction.message.guild.member(user).roles.add(role))
     //const role = reaction.message.author.guild.roles.cach
     //a.forEach(user => )
     
