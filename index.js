@@ -53,6 +53,7 @@ discordClient.on('messageReactionAdd', async (reaction, user) => {
 	console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction! from`);
   //console.log(reaction);
   console.log(reaction.users.cache);
+  console.log(reaction.cache);
 	// The reaction is now also fully available and the properties will be reflected accurately:
 	console.log(`${reaction.count} user(s) have given the same reaction to this message!`);
 });
