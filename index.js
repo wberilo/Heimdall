@@ -61,7 +61,12 @@ discordClient.on('messageReactionAdd', async (reaction, user) => {
     a.forEach(user => {
       const mem = reaction.message.guild.member(user.id)
       if (mem) {
-        mem.roles.add(role)
+        try {
+          mem.roles.add(role)
+          
+        } catch (error) {
+          console.log(error);
+        }
       }
     })
     //const role = reaction.message.author.guild.roles.cach
