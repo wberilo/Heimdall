@@ -1,10 +1,11 @@
-const Discord = require('discord.js');
+const { Client } = require('discord.js');
 const tmi = require('tmi.js');
 require('dotenv').config()
 
 const rpgDiceRoller = require('rpg-dice-roller');
 
-const discordClient = new Discord.Client();
+const discordClient = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+
 
 const twitchClient = new tmi.Client({
 	options: { debug: true },
@@ -35,8 +36,29 @@ twitchClient.on('chat', (channel, tags, message, self) => {
 	}
 });
 
+discordClient.on('messageReactionAdd', async (reaction, user) => {
+	// When a reaction is received, check if the structure is partial
+	if (reaction.partial) {
+		// If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
+		try {
+			await reaction.fetch();
+		} catch (error) {
+			console.error('Something went wrong when fetching the message:', error);
+			// Return as `reaction.message.author` may be undefined/null
+			return;
+		}
+	}
+
+	// Now the message has been cached and is fully available
+	console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction! from ${reaction.user.username}`);
+	// The reaction is now also fully available and the properties will be reflected accurately:
+	console.log(`${reaction.count} user(s) have given the same reaction to this message!`);
+});
+
 discordClient.on('message', function (message) {
   if (message.author.bot) return;
+
+  
 
   const commandBody = message.content.slice(prefix.length);
   const args = commandBody.split(' ');
