@@ -51,7 +51,13 @@ discordClient.on('messageReactionAdd', async (reaction, user) => {
 
 	// Now the message has been cached and is fully available
 	console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction! from`);
-  //console.log(reaction);
+  try {
+    const a = await reaction.users.fetch()
+    console.log(a);
+    
+  } catch (error) {
+    
+  }
   //console.log(reaction.message.reactions);
 
 	// The reaction is now also fully available and the properties will be reflected accurately:
