@@ -36,53 +36,6 @@ twitchClient.on('chat', (channel, tags, message, self) => {
 	}
 });
 
-discordClient.on('messageReactionAdd', async (reaction, user) => {
-	// When a reaction is received, check if the structure is partial
-	if (reaction.partial) {
-		// If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
-		try {
-			await reaction.fetch();
-		} catch (error) {
-			console.error('Something went wrong when fetching the message:', error);
-			// Return as `reaction.message.author` may be undefined/null
-			return;
-		}
-	}
-
-  if (!reaction.message.content.includes('please react to this post with a thumbs up')) return;
-
-	// Now the message has been cached and is fully available
-	console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction! from`);
-  try {
-    const a = await reaction.users.fetch()
-    const role = await reaction.message.guild.roles.cache.find(role => role.name === "Adventurer")
-    //console.log(role);
-
-    a.forEach(user => {
-      const mem = reaction.message.guild.member(user.id)
-      if (mem) {
-        try {
-          mem.roles.add(role)
-          
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      else(
-        console.log(user)
-      )
-    })
-    //const role = reaction.message.author.guild.roles.cach
-    //a.forEach(user => )
-    
-  } catch (error) {
-    console.log(error);
-  }
-  //console.log(reaction.message.reactions);
-
-	// The reaction is now also fully available and the properties will be reflected accurately:
-	console.log(`${reaction.count} user(s) have given the same reaction to this message!`);
-});
 
 discordClient.on('message', function (message) {
   if (message.author.bot) return;
