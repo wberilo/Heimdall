@@ -46,10 +46,7 @@ discordClient.on('message', function (message) {
   const args = commandBody.split(' ');
   const command = args.shift().toLowerCase();
 
-  if (message.content.toLowerCase().includes('bot sucks')) {
-    const attachment = new Discord.MessageAttachment('https://emoji.gg/assets/emoji/7689_unoreversecard.png');
-    message.channel.send(attachment);
-  }
+  
 
   if (!message.content.startsWith(prefix)) return;
 
